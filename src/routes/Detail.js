@@ -31,6 +31,8 @@ function Detail() {
                 <MovieDetail
                     id={detailInfo.id}
                     title={detailInfo.title}
+                    year={detailInfo.year}
+                    desc={detailInfo.description_full}
                     image={detailInfo.large_cover_image}
                     genres={detailInfo.genres}
                 />}

@@ -1,28 +1,36 @@
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-function Movie({id, title, summary, genres, image}) {
+import styles from "./Movie.module.css";
+
+function Movie({id, title, year, summary, genres, coverImg}) {
     return (
-        <div>
-            <h2>
-                <Link to={`/movie/${id}`}>{title}</Link>
-            </h2>
-            <p>{summary}</p>
-            <ul>
+        <div className={styles.movie}>
+            <img src={coverImg} alt={title} className={styles.movie__img} />
+            <div>
+                <h2 className={styles.movie__title}>
+                    <Link to={`/movie/${id}`}>{title}</Link>
+                </h2>
+                <h3 className={styles.movie__year}>{year}</h3>
+                <p>{summary.length > 235 ? `${summary.slice(0, 235)}...` : summary}</p>
+            <ul className={styles.movie__genres}>
                 {genres.map((genre, index) => <li key={index}>{genre}</li>)}
             </ul>
-            <img src={image} alt={title}/>
+            </div>
         </div>
     );
 }
 
-export function MovieDetail({id, title, genres, image}) {
+export function MovieDetail({id, title, genres, image, year, desc}) {
+    console.log(desc);
     return (
-        <div>
-            <h2>{title}</h2>
-            <ul>
+        <div className={styles.movie_detail}>
+            <h2 className={styles.movie__title}>{title}</h2>
+            <h3 className={styles.movie__year}>{year}</h3>
+            <ul className={styles.movie__genres}>
                 {genres.map((genre, index) => <li key={index}>{genre}</li>)}
             </ul>
-            <img src={image} alt={title}/>
+            <p>{desc}</p>
+            <img src={image} alt={title} className={styles.movie_detail__img}/>
         </div>
     );
 }
